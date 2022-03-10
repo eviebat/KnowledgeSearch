@@ -10,6 +10,6 @@ The user settings logic is defined in userSettings.php
 ![Capture2](https://user-images.githubusercontent.com/14208362/157765274-04bc4651-9faf-406b-ba1f-0723a6388f90.PNG)
 
 ## Searching
-Searching can be done by Title, Service, Config Item or the entire article. The user is also able to check different regional prefixes to search for a knowledge articles that relate to a specific region.
+Searching can be done by Title, Service, Config Item or the entire article. The user is also able to check different regional prefixes to search for a knowledge articles that relate to a specific region. By selecting these different options, a different SQL query is created to match the desired search.
 
 ![Capture](https://user-images.githubusercontent.com/14208362/157765398-894463b2-553e-47e4-ba7f-506521997a66.PNG)
