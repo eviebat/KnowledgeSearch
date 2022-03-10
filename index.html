@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+        <title>KA Search Tool DR</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=10">
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel='icon' href='images/favicon.ico'>
+		<!-- Latest compiled and minified bootstrap CSS -->
+		<link rel="stylesheet" href="bootstrap.min.css">
+
+		<!-- Optional theme -->
+		<link rel="stylesheet" href="bootstrap-theme.min.css">
+
+        <!-- Custom CSS-->
+        <link rel="stylesheet" href="override.css">
+		
+		<!-- Datetime picker style -->
+		<link rel="stylesheet" href="bootstrap-datetimepicker.min.css" />
+
+	</head>
+	<body>
+
+
+
+<div class="container-fluid">
+<div class="container">
+
+<div class="row">
+<div class="col-md-12">
+    <form role="form" id="reportForm">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-primary" style="background: rgba(253,253,253,.95); z-index: 6;">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">KA Search DR</h3>
+                    </div>
+                    <div class="panel-body">
+                      <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="kaSearchValue"></label>
+									<div id='kaSearchValuediv'>
+                                    <input  name="kaSearchValue" type="text" class="form-control" autocomplete="off" spellcheck="true"/>
+									</div>
+                                </div>
+                            </div>                                                                        
+                        </div><!-- Row -->
+                      
+					  <div class="row">
+						<div class="col-md-3"><h5>Search By:</h5></div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <h5><input value='kaTitleAbstract' name='searchType' type='radio' checked="checked"/> Title/Abstract</h5>
+                            </div>
+                        </div>							
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <h5><input value='kaService' name='searchType' type='radio' /> Service</h>
+                            </div>
+                        </div>
+						<div class='col-md-2'>
+                            <div class="form-group">
+                                <h5><input value='kaConfig' name='searchType' type='radio' /> Config Item</h5>
+                            </div>
+                        </div>
+                        <div class='col-md-2'>
+                            <div class="form-group">
+                                <h5><input value="kaFull" name="searchType" type='radio' /> Full Article</h5>
+                            </div>
+                        </div>
+                        </div><!-- Row -->
+					<div id="regionDisplay"> <!-- Regional Prefix Checkboxes will display here if user is searching SD Profiled KAs --></div>
+                    </div>      
+                </div>
+            </div>
+        </div> 
+	</form>
+</div>
+</div>
+
+
+	<div class="collapse" id="profileSettings">
+	<div class="col-md-13">
+	<div class="panel panel-primary add-bg-transparency">
+	   <form role="form" id="profileForm">
+		<div class="panel-body">
+		
+ 		<div class="row" id="infraProfileSettings">                       
+ 
+	</div>
+	
+	<div class="col-md-5"></div>
+	<div class="col-md-3">
+			<button type="button" id="saveProfile" class="btn btn-default">Save</button>
+	</div>
+	<div class="row">
+        <div class="container">
+		<div class="col-md-4"></div>
+            <div class="col-md-8" id="profileResult"> 			</div>
+        </div>
+    </div>
+	</div>
+
+	
+	</div>
+   </div>
+   </div>
+	
+        <div class="row">
+			<div class="col-md-3">
+			</div>
+            <div class="col-md-3">
+			<button type="button" id="btnSettings" class="btn btn-default btn-lg btn-block" data-toggle="collapse" data-target="#profileSettings">Profile Settings</button>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <button type="submit" id="btnSubmit" class="btn btn-primary btn-lg btn-block">Search</button>
+                </div>
+            </div>
+        </div>
+    </form>
+	
+	
+	
+    <div class="well well-lg" style="background: rgba(253,253,253,.95); z-index: 6;">
+        <div class="row">
+            <div class="col-md-13">
+                <div id="errorMSG"></div>
+                <div class="progress center-block fade" id="progressBar" style="height:30px; width: 80%;"><div class="progress-bar progress-bar-striped active" role="progressbar" style="width:100%;  font-size:22px; line-height: 30px;">Now just hang on a second...</div></div>
+            </div>
+        </div>
+
+    <div class="row">
+        <div class="container">
+            <div id="searchResult"> 
+		
+
+			</div>
+        </div>
+    </div>
+    </div>
+    
+</div>
+</div>
+
+
+
+<footer>
+<div id="exportResult" style='display: none'></div>
+</footer>
+
+
+
+<!-- jQuery -->
+<script src="jquery-2.1.4.min.js"></script>
+<script src="jquery-migrate-1.2.1.min.js"></script>
+<!-- Latest compiled and minified bootstrap JavaScript -->
+<script src="bootstrap.min.js"></script>
+<!-- custom js -->
+<!-- custom js -->
+<script src="moment.js"></script>
+<script src="bootstrap-datetimepicker.js"></script>
+<script src="functions.js"></script>
+<script src="post.js"></script>
+<script type="text/javascript" src="typeahead.js" ></script>
+
+
+
+</body>
+</html>

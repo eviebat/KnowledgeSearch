@@ -1,0 +1,39 @@
+email: activesync
+
+access: permissions login logon
+login: permissions logon access
+logon: permissions login access
+
+issue: incident problem error trouble
+incident : issue problem error trouble
+problem: incident issue error trouble
+error: incident problem issue trouble
+trouble: incident problem issue issue
+
+phone: mobility activesync xenmobile
+
+can't: cannot 
+
+skype: lync link
+
+multiple: several many 
+many: multiple several
+
+requesting: wants needs requests
+wants: requesting needs requests
+needs: requesting wants requests
+requests: requesting wants needs 
+
+workforce: workfront
+force: front
+
+computer: PC laptop desktop workstation
+PC: computer laptop desktop workstation
+workstation: laptop desktop computer PC
+
+receive: gets
+gets: receive 
+
+folder: directory share
+directory: folder share
+share: folder directory

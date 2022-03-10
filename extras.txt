@@ -1,0 +1,198 @@
+<script type="text/javascript">
+    $(document).ready(function(){
+        $.ajax({
+            url: 'initialUserSettings.php',
+            success: function(data) {
+				$('#searchProfile').remove();
+                $( '#infraProfileSettings ').append( data );
+            }
+        });
+   });
+</script>
+
+
+
+/* ################################
+//Write user settings to DB
+################################
+//This function will take in profiles array and the profile
+//flags checked from the HTML
+
+function setUserSettings ($profiles, $userNewProfiles) {
+	
+	$username = $_SERVER['REMOTE_USER'];	
+	//$username = "ppgna\c004693";  //testing
+	$updateSqlProfile = "Update dbo.kaUserProfileSettings SET ";						//Start UPDATE SQL query
+	$numberNewProfiles = count($userNewProfiles);
+
+	$numberOfProfiles = count($profiles);
+	$i = 0;
+	
+	if($numberNewProfiles == 0) 
+	{
+		return;
+	} elseif ($numberNewProfiles == 1)
+	{
+		$userNewProfiles = array($userNewProfiles);
+	}
+	
+
+	
+	//For each infra profile check if it is in the users checked flags and set SQL query accordingly
+	 foreach ($profiles as $profile)
+	 {
+		 if (in_array($profile, $userNewProfiles))
+		 {
+			 $updateSqlProfile .= $profile . " = 'True'";
+			 $i++;
+		 }else
+		 {
+			 $updateSqlProfile .= $profile . " = 'False'";
+			 $i++;
+		 }
+		 if($i < $numberOfProfiles)														//As long as there are more profiles, add a comma to sql statement
+		 {
+			$updateSqlProfile .= ", ";
+		 }
+	 }
+	
+	$updateSqlProfile .= " WHERE Username = '" . $username . "'";
+	file_put_contents('C:\inetpub\logs\evie.txt', print_r($updateSqlProfile, true));
+	try {
+		$myDB = new DatabaseConnection("../kadb_userinfo.ini");
+	} catch(Exception $e) {
+		$myDE->setError($e->getMessage());
+	}
+
+	if (isset($myDB)) {
+		$counter = 0; 
+		$result = $myDB->connection->query($updateSqlProfile);
+		$myDB = NULL;
+	}
+
+	file_put_contents('C:\inetpub\logs\evie.txt', print_r($updateSqlProfile, true));
+	
+} */
+
+
+
+
+
+SQL to search by config:
+
+SQL BEG:
+"SELECT K.KNOWLEDGE_REF 
+FROM  RV_CONFIG_ITEM A INNER JOIN (RV_KNOWLEDGE K INNER JOIN  KB_ASSET_LINK KAL with (nolock) 
+ON  K.KNOWLEDGE_REF = KAL.KNOWLEDGE_REF) 
+ON  A.CI_Item_Ref =  KAL.ITEM_REF 
+WHERE A.ENTITY_REF = 1 AND KAL.STATUS='A' AND K.Status='active' AND K.Entry_Status_Ref <> 0 
+"
+
++
+
+sqlProfile
+
++
+
+"AND A.CI_Asset_Ref LIKE '%"
+
++
+
+$queryValue
+
++
+ 
+ "%' ORDER BY 1"
+
+
+
+
+
+
+results:
+
+Array
+(
+    [0] => Array
+        (
+            [KNOWLEDGE_REF] => 5037
+            [0] => 5037
+        )
+
+    [1] => Array
+        (
+            [KNOWLEDGE_REF] => 5038
+            [0] => 5038
+        )
+
+    [2] => Array
+        (
+            [KNOWLEDGE_REF] => 5069
+            [0] => 5069
+        )
+
+)
+
+
+
+
+current config thing
+$sqlBeginningStr = "SELECT K.KNOWLEDGE_REF, A.CI_Asset_Ref CI, K.TITLE, K.Profile_Name, K.Abstract FROM  RV_CONFIG_ITEM A INNER JOIN (RV_KNOWLEDGE K INNER JOIN  KB_ASSET_LINK KAL with (nolock) ON  K.KNOWLEDGE_REF = KAL.KNOWLEDGE_REF) ON  A.CI_Item_Ref =  KAL.ITEM_REF WHERE ";
+	$sqlBeginningStr .= "A.ENTITY_REF = 1 AND KAL.STATUS='A' AND K.Status='active' AND K.Entry_Status_Ref <> 0 ";
+	$sqlBeginningStr .= " AND " . $sqlProfileStr;
+	$sqlQuery = $sqlBeginningStr . "AND A.CI_Asset_Ref LIKE '%" . $searchArray[0] . "%' ORDER BY 1";
+
+
+
+old regional section:
+
+//Loops through each word in $tmpQV to find region prefixes
+		//Sets region prefixes to array $regionArray and sets search
+		//terms in array $searchArray 
+/* 			foreach($tmpQV as $key=>$word)
+			{
+				$wordIsRegion = false;
+				foreach($regions as $region)
+				{
+					if (strcasecmp($word,$region) == 0 )
+					{
+						$regionalPrefixBool = true;
+						$wordIsRegion = true;
+						array_push($regionArray, $region);
+						if($key == 0)
+						{
+							$primRegion = $region;
+						}
+					}
+				}
+				if ($wordIsRegion == false)
+				{
+					array_push($searchArray, $word);
+				}				
+			}
+		} //End Parsing of Search Query for Regional Prefixes  */
+		
+		 
+	/*
+ 	
+		if ($regionalPrefixBool == true) //If Query has a regional prefix, update SQL Query beginning to include prefix in search -EV
+		{
+			//If Query has a regional prefix, update SQL Query beginning to include prefix in search -EV
+				foreach($selectedRegions as $key=>$region)
+				{
+					if ($key == 0)
+					{
+						$sqlRegionPrefix .= " K.Title Like '%" . $region . "%'";
+					} else {
+						$sqlRegionPrefix .= " OR K.Title Like '%" . $region . "%'";
+					}
+				}
+				$sqlBeginningStr .= " AND (" . $sqlRegionPrefix . ")"; 
+		} 	 */
+
+
+
+
+
+
+
